@@ -319,10 +319,11 @@ def fichier(link: str) -> str:
   
 def solidfiles(url: str) -> str:
   
-    root = "https://kemono.party"
+    root = "https://kemono.party/"
     dl_url = ''
     s = requests.Session()
-    dl_url = s.headers.["Referer"] = root + "/"
+    s.headers.["Referer"] = root
+    dl_url = s.get(url)
     return dl_url
     
 def krakenfiles(page_link: str) -> str:
