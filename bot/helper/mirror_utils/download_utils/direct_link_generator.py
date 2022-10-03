@@ -318,15 +318,7 @@ def fichier(link: str) -> str:
         raise DirectDownloadLinkException("ERROR: Error trying to generate Direct Link from 1fichier!")
 
 def solidfiles(url: str) -> str:
-    """ Solidfiles direct link generator
-    Based on https://github.com/Xonshiz/SolidFiles-Downloader
-    By https://github.com/Jusidama18 """
-     """  headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36'
-    }
-    pageSource = rget(url, headers = headers).text
-    mainOptions = str(re_search(r'viewerOptions\'\,\ (.*?)\)\;', pageSource).group(1)) 
-    return jsnloads(mainOptions)["downloadUrl"] """
+  
     dl_url = ''
     s = requests.Session()
     s.headers.update({'referer': 'https://kemono.party/'})
