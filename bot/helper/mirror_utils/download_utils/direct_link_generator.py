@@ -319,10 +319,9 @@ def fichier(link: str) -> str:
   
 def solidfiles(url: str) -> str:
   
-    root = "https://kemono.party/"
     dl_url = ''
     s = requests.Session()
-    s.headers.["Referer"] = root
+    s.headers.Referer="https://kemono.party/"
     dl_url = s.get(url)
     return dl_url
     
