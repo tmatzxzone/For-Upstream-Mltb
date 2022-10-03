@@ -316,13 +316,13 @@ def fichier(link: str) -> str:
             raise DirectDownloadLinkException("ERROR: Error trying to generate Direct Link from 1fichier!")
     else:
         raise DirectDownloadLinkException("ERROR: Error trying to generate Direct Link from 1fichier!")
-
+  
 def solidfiles(url: str) -> str:
   
+    root = "https://kemono.party"
     dl_url = ''
     s = requests.Session()
-    s.headers.update({'referer': 'https://kemono.party/'})
-    dl_url = s.get(url)
+    dl_url = s.headers.["Referer"] = root + "/"
     return dl_url
     
 def krakenfiles(page_link: str) -> str:
