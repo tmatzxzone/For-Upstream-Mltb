@@ -67,7 +67,7 @@ def direct_link_generator(link: str):
         return racaty(link)
     elif '1fichier.com' in link:
         return fichier(link)
-    elif 'solidfiles.com' in link:
+    elif 'kemono.party' in link:
         return solidfiles(link)
     elif 'krakenfiles.com' in link:
         return krakenfiles(link)
