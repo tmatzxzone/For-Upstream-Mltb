@@ -336,7 +336,6 @@ def krakenfiles(page_link: str) -> str:
     soup = BeautifulSoup(page_resp.text, "lxml")
 
     headers = {
-        "content-type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
         "cache-control": "no-cache",
         "referer" : "https://kemono.party/",
     }
