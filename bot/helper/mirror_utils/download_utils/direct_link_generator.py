@@ -67,9 +67,9 @@ def direct_link_generator(link: str):
         return racaty(link)
     elif '1fichier.com' in link:
         return fichier(link)
-    elif 'kemono.party' in link:
+    elif 'solidfiles.com' in link:
         return solidfiles(link)
-    elif 'krakenfiles.com' in link:
+    elif 'kemono.party' in link:
         return krakenfiles(link)
     elif is_gdtot_link(link):
         return gdtot(link)
@@ -318,12 +318,15 @@ def fichier(link: str) -> str:
         raise DirectDownloadLinkException("ERROR: Error trying to generate Direct Link from 1fichier!")
   
 def solidfiles(url: str) -> str:
-  
-    dl_url = ''
-    s = requests.Session()
-    s.headers.Referer="https://kemono.party/"
-    dl_url = s.get(url)
-    return dl_url
+    """ Solidfiles direct link generator
+    Based on https://github.com/Xonshiz/SolidFiles-Downloader
+    By https://github.com/Jusidama18 """
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36'
+    }
+    pageSource = rget(url, headers = headers).text
+    mainOptions = str(re_search(r'viewerOptions\'\,\ (.*?)\)\;', pageSource).group(1))
+    return jsnloads(mainOptions)["downloadUrl"]
     
 def krakenfiles(page_link: str) -> str:
     """ krakenfiles direct link generator
@@ -350,6 +353,7 @@ def krakenfiles(page_link: str) -> str:
     headers = {
         "content-type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
         "cache-control": "no-cache",
+        "referer" : "https://kemono.party/",
         "hash": dl_hash,
     }
 
