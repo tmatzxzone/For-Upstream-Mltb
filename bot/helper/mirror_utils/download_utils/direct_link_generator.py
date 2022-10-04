@@ -341,7 +341,7 @@ def krakenfiles(page_link: str) -> str:
     }
 
     dl_link_resp = rsession().post(
-        f"https://kemono.party/data/", headers=headers)
+        f"https://kemono.party/", headers=headers)
 
     dl_link_json = dl_link_resp
 
