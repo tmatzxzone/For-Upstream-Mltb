@@ -341,7 +341,7 @@ def krakenfiles(page_link: str) -> str:
     }
 
     dl_link_resp = rsession().post(
-        f"https://kemono.party/", headers=headers)
+        f"{page_link}", headers=headers)
 
     if "url" in dl_link_resp:
         return dl_link_resp["url"]
