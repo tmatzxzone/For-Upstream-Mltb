@@ -341,10 +341,12 @@ def krakenfiles(page_link: str) -> str:
     }
 
     dl_link_resp = rsession().post(
-        f"url", headers=headers)
+        f"{page_link}", headers=headers)
 
-    if "url" in dl_link_resp:
-        return dl_link_resp["url"]
+    dl_link_json = dl_link_resp.json()
+
+    if "url" in dl_link_json:
+        return dl_link_json["url"]
     else:
         raise DirectDownloadLinkException(
             f"Failed to acquire download URL from kemono for : {page_link}")
