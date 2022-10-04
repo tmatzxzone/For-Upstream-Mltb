@@ -341,7 +341,7 @@ def krakenfiles(page_link: str) -> str:
     }
 
     dl_link_resp = rsession().post(
-        headers=headers)
+        f"url", headers=headers)
 
     if "url" in dl_link_resp:
         return dl_link_resp["url"]
