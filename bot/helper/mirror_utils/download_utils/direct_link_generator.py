@@ -333,11 +333,6 @@ def krakenfiles(page_link: str) -> str:
     Based on https://github.com/tha23rd/py-kraken
     By https://github.com/junedkh """
     page_resp = rsession().get(page_link)
-"""    soup = BeautifulSoup(page_resp.text, "lxml")
-    try:
-        token = soup.find("input", id="dl-token")["value"]
-    except:
-        raise DirectDownloadLinkException(f"Page link is wrong: {page_link}") """"
 
     hashes = [
         item["data-file-hash"]
