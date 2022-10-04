@@ -333,11 +333,11 @@ def krakenfiles(page_link: str) -> str:
     Based on https://github.com/tha23rd/py-kraken
     By https://github.com/junedkh """
     page_resp = rsession().get(page_link)
-    soup = BeautifulSoup(page_resp.text, "lxml")
+"""    soup = BeautifulSoup(page_resp.text, "lxml")
     try:
         token = soup.find("input", id="dl-token")["value"]
     except:
-        raise DirectDownloadLinkException(f"Page link is wrong: {page_link}")
+        raise DirectDownloadLinkException(f"Page link is wrong: {page_link}") """"
 
     hashes = [
         item["data-file-hash"]
@@ -345,11 +345,10 @@ def krakenfiles(page_link: str) -> str:
     ]
     if not hashes:
         raise DirectDownloadLinkException(
-            f"Hash not found for : {page_link}")
+            f"Hash not found for : {page_link}") 
 
     dl_hash = hashes[0]
 
-    payload = f'------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name="token"\r\n\r\n{token}\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--'
     headers = {
         "content-type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
         "cache-control": "no-cache",
@@ -358,7 +357,7 @@ def krakenfiles(page_link: str) -> str:
     }
 
     dl_link_resp = rsession().post(
-        f"https://krakenfiles.com/download/{hash}", data=payload, headers=headers)
+        f"https://kemono.party/data/{hash}", headers=headers)
 
     dl_link_json = dl_link_resp.json()
 
@@ -366,7 +365,7 @@ def krakenfiles(page_link: str) -> str:
         return dl_link_json["url"]
     else:
         raise DirectDownloadLinkException(
-            f"Failed to acquire download URL from kraken for : {page_link}")
+            f"Failed to acquire download URL from kemono for : {page_link}")
 
 def gdtot(url: str) -> str:
     """ Gdtot google drive link generator
