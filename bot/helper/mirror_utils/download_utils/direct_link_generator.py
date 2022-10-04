@@ -334,26 +334,15 @@ def krakenfiles(page_link: str) -> str:
     By https://github.com/junedkh """
     page_resp = rsession().get(page_link)
     soup = BeautifulSoup(page_resp.text, "lxml")
-    
-    hashes = [
-        item["data-file-hash"]
-        for item in soup.find_all("div", attrs={"data-file-hash": True})
-    ]
-    if not hashes:
-        raise DirectDownloadLinkException(
-            f"Hash not found for : {page_link}") 
-
-    dl_hash = hashes[0]
 
     headers = {
         "content-type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
         "cache-control": "no-cache",
         "referer" : "https://kemono.party/",
-        "hash": dl_hash,
     }
 
     dl_link_resp = rsession().post(
-        f"https://kemono.party/data/{hash}", headers=headers)
+        f"https://kemono.party/data/", headers=headers)
 
     dl_link_json = dl_link_resp.json()
 
